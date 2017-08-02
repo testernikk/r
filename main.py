@@ -1,4 +1,14 @@
-from guizero import App,Combo,TextBox,Text,PushButton
+from guizero import App,Combo,TextBox,Text,PushButton,info
+
+def SuccessfulMessage():
+    info("SuccessfulMessage", "Thanks For Submitting Bug")
+    print(BugTitle.get())
+    print(Bugdescription.get())
+    print(BugType.get())
+    print(AssignedTo.get())
+    print(assignedBy.get())
+    
+    
 app = App(title="Bug Tracker client Saffron", width=300, height=200, layout="grid")
 #Bug title
 BugTitle_description = Text(app, text="Bug Title", grid=[0,0], align="left") # adding Description for combo box
@@ -16,6 +26,7 @@ assignedto_description = Text(app, text="Assigned To", grid=[3,0], align="left")
 AssignedByDesc = Text(app, text="Assigned By", grid=[4,0], align="left") # adding Description for combo box 
 assignedBy=TextBox(app , grid=[4,1], align="left")
 #SubmitButton
-update_text = PushButton(app, command=0 , text="Submit" , grid=[5,0], align="left")
+update_text = PushButton(app, command=SuccessfulMessage , text="Submit" , grid=[5,0], align="left")
 
 app.display()
+    
