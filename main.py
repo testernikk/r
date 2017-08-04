@@ -1,12 +1,14 @@
 from guizero import App,Combo,TextBox,Text,PushButton,info
+import csv
+
 
 def SuccessfulMessage():
+    listVar=[BugTitle.get(),Bugdescription.get(), BugType.get(),AssignedTo.get(),assignedBy.get()]
+    with open('filename', 'w') as myfile:
+        wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+        wr.writerow(listVar)
     info("SuccessfulMessage", "Thanks For Submitting Bug")
-    print(BugTitle.get())
-    print(Bugdescription.get())
-    print(BugType.get())
-    print(AssignedTo.get())
-    print(assignedBy.get())
+    
     
     
 app = App(title="Bug Tracker client Saffron", width=300, height=200, layout="grid")
@@ -26,7 +28,7 @@ assignedto_description = Text(app, text="Assigned To", grid=[3,0], align="left")
 AssignedByDesc = Text(app, text="Assigned By", grid=[4,0], align="left") # adding Description for combo box 
 assignedBy=TextBox(app , grid=[4,1], align="left")
 #SubmitButton
-update_text = PushButton(app, command=SuccessfulMessage , text="Submit" , grid=[5,0], align="left")
+update_text = PushButton(app, command=SuccessfulMessage , text="Submit" , grid=[5,1], align="left")
 
 app.display()
     
