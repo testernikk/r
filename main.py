@@ -1,17 +1,28 @@
-from guizero import App,Combo,TextBox,Text,PushButton,info
+from guizero import App,Combo,TextBox,Text,PushButton,info,MenuBar
 import csv
 
 
 def SuccessfulMessage():
     listVar=[BugTitle.get(),Bugdescription.get(), BugType.get(),AssignedTo.get(),assignedBy.get()]
-    with open('filename', 'w') as myfile:
+    with open('BugList', 'w') as myfile:
         wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
         wr.writerow(listVar)
     info("SuccessfulMessage", "Thanks For Submitting Bug")
-    
-    
+
+def file_function():
+    print("File option")
+
+def edit_function():
+    print("Edit option")
     
 app = App(title="Bug Tracker client Saffron", width=300, height=200, layout="grid")
+
+menubar = MenuBar(app,
+                  toplevel=["File", "Edit"],
+                  options=[
+                      [ ["File option 1", file_function], ["File option 2", file_function] ],
+                      [ ["Edit option 1", edit_function], ["Edit option 2", edit_function] ]    
+                  ])
 #Bug title
 BugTitle_description = Text(app, text="Bug Title", grid=[0,0], align="left") # adding Description for combo box
 BugTitle=TextBox(app , grid=[0,1], align="left")
